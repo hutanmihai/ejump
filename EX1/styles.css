@@ -1,0 +1,50 @@
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: grey;
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+    border: black 1px solid;
+    z-index: 0;
+}
+
+.circle {
+    width: 98px;
+    height: 98px;
+    border: black 1px solid;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+@media screen and (max-width: 700px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .square, .circle {
+        width: 80px;
+        height: 80px;
+    }
+}
