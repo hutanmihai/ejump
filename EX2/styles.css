@@ -71,3 +71,25 @@ td {
     border: 1px solid #ccc;
 }
 
+.btn {
+    display: inline-block;
+    padding: 0.5rem;
+    height: fit-content;
+    width: fit-content;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-right: 2.5vw;
+    margin-bottom: 1vh;
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: darkred;
+    color: #fff;
+}
+

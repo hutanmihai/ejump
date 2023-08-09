@@ -6,7 +6,7 @@ fetch('./dataScript/data.txt')
     .then(text => {
         processData(text);
         createAndAppendSelects(data);
-        updateTable(data)
+        updateTable(data);
     })
     .catch(error => {
         console.error('Error loading file:', error);
@@ -77,9 +77,6 @@ function filterData() {
     const selectedB = selectB.value;
     const selectedC = selectC.value;
 
-    // Get the latest selected value
-    const latestSelected = this.value;
-
     // Filter the data based on the selected values
     // Not really proud of this :))
     const filteredData = data.filter(item => {
@@ -107,16 +104,16 @@ function filterData() {
 
     // Update the options for the selects based on the filtered data
     const optionsA = [...new Set(filteredData.map(item => item.A))];
-    updateSelectOptions(selectA, optionsA, latestSelected);
+    updateSelectOptions(selectA, optionsA, selectedA);
 
     const optionsB = [...new Set(filteredData.map(item => item.B))];
-    updateSelectOptions(selectB, optionsB, latestSelected);
+    updateSelectOptions(selectB, optionsB, selectedB);
 
     const optionsC = [...new Set(filteredData.map(item => item.C))];
-    updateSelectOptions(selectC, optionsC, latestSelected);
+    updateSelectOptions(selectC, optionsC, selectedC);
 }
 
-function updateSelectOptions(select, options, latestSelected) {
+function updateSelectOptions(select, options, selected) {
     // Clear the existing options
     select.innerHTML = '';
 
@@ -125,7 +122,7 @@ function updateSelectOptions(select, options, latestSelected) {
         const allOption = document.createElement('option');
         allOption.value = 'Toate';
         allOption.textContent = 'Toate';
-        if (latestSelected === 'Toate') {
+        if (selected === 'Toate') {
             allOption.selected = true;
         }
         select.appendChild(allOption);
@@ -136,7 +133,7 @@ function updateSelectOptions(select, options, latestSelected) {
         const optionElement = document.createElement('option');
         optionElement.value = option;
         optionElement.textContent = option;
-        if (latestSelected === option) {
+        if (option === selected) {
             optionElement.selected = true;
         }
         select.appendChild(optionElement);
@@ -168,4 +165,17 @@ function updateTable(filteredData) {
 
     // Append the table to the container
     tableContainer.appendChild(table);
+}
+
+function resetPage() {
+    const containerSelection = document.querySelectorAll('.selection')
+    const containerTable = document.querySelector('.container-table');
+
+    containerTable.innerHTML = '';
+    containerSelection.forEach(item => {
+        item.remove();
+    });
+
+    createAndAppendSelects(data);
+    updateTable(data)
 }
